@@ -7,146 +7,212 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
 }
 
-body {
-    background: radial-gradient(circle at 20% 20%, #0d1b2a, #020617 70%);
-    color: white;
-    min-height: 100vh;
+body{
+    background:radial-gradient(circle at 20% 20%, #0d1b2a, #020617 70%);
+    color:white;
 }
 
-/* NAVBAR */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 80px;
+/* NAV */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30px 80px;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 700;
+.logo{
+    font-weight:700;
+    font-size:20px;
 }
 
-.logo span {
-    color: #3ba8ff;
+.logo span{
+    color:#3ba8ff;
 }
 
-.button {
-    background: #3ba8ff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
+.button{
+    background:#3ba8ff;
+    padding:10px 20px;
+    border-radius:20px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
 }
 
 /* HERO */
-.hero {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 40px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.1);
+.hero{
+    max-width:900px;
+    margin:60px auto;
+    padding:40px;
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
 }
 
-.hero h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
+.hero h1{
+    font-size:36px;
+    margin-bottom:20px;
 }
 
-.hero p {
-    color: #b0c4de;
-    line-height: 1.6;
+.hero p{
+    color:#b0c4de;
+    line-height:1.6;
 }
 
 /* PROJECTS */
-.section {
-    max-width: 1200px;
-    margin: 80px auto;
-    padding: 0 40px;
+.section{
+    max-width:1200px;
+    margin:80px auto;
+    padding:0 40px;
 }
 
-.section h2 {
-    margin-bottom: 40px;
-    font-size: 28px;
+.section h2{
+    margin-bottom:40px;
 }
 
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
 }
 
-.card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    overflow: hidden;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: 0.3s;
+.card{
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    overflow:hidden;
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.3s;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    border-color: #3ba8ff;
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#3ba8ff;
 }
 
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
 }
 
-.card-content {
-    padding: 20px;
+.card-content{
+    padding:20px;
 }
 
-.card-content h3 {
-    margin-bottom: 10px;
+.card-content h3{
+    margin-bottom:10px;
 }
 
-.card-content p {
-    color: #9fb3c8;
-    font-size: 14px;
-    margin-bottom: 15px;
+.card-content p{
+    color:#9fb3c8;
+    font-size:14px;
+    margin-bottom:15px;
 }
 
-.tags {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
+.tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
 }
 
-.tag {
-    background: rgba(59,168,255,0.15);
-    color: #3ba8ff;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 12px;
+.tag{
+    background:rgba(59,168,255,0.15);
+    color:#3ba8ff;
+    padding:5px 12px;
+    border-radius:15px;
+    font-size:12px;
 }
 
-.card-content a {
-    text-decoration: none;
-    color: #3ba8ff;
-    font-weight: 600;
+.card-content a{
+    text-decoration:none;
+    color:#3ba8ff;
+    font-weight:600;
+    cursor:pointer;
 }
 
-footer {
-    text-align: center;
-    padding: 40px;
-    color: #6c8aa6;
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(5px);
+}
+
+.modal-content{
+    background:#0d1b2a;
+    margin:5% auto;
+    padding:30px;
+    border-radius:20px;
+    width:85%;
+    max-width:1100px;
+    border:1px solid rgba(255,255,255,0.1);
+    position:relative;
+    animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.modal-content h2{
+    margin-bottom:20px;
+}
+
+.modal-body{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.modal-video{
+    flex:2;
+}
+
+.modal-info{
+    flex:1;
+}
+
+.modal-info ul{
+    list-style:none;
+}
+
+.modal-info li{
+    margin-bottom:10px;
+    color:#9fb3c8;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#6c8aa6;
 }
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -173,13 +239,23 @@ PvP oraz rozwiązaniach tworzonych indywidualnie pod serwer.
 <img src="https://picsum.photos/600/400?1">
 <div class="card-content">
 <h3>ServerCore Framework</h3>
-<p>Autorski prywatny system zarządzania serwerem zawierający rangi, GUI, cooldowny oraz modularną architekturę.</p>
+<p>Zaawansowany prywatny system zarządzania serwerem.</p>
 <div class="tags">
 <span class="tag">Java</span>
 <span class="tag">Paper 1.21</span>
 <span class="tag">Private</span>
 </div>
-<a href="#">Zobacz demo</a>
+<a onclick="openModal(
+'ServerCore Framework',
+'ABC123XYZ',
+[
+'System rang',
+'Custom GUI',
+'Teleport system',
+'Cooldown manager',
+'Modularna architektura'
+]
+)">Zobacz więcej</a>
 </div>
 </div>
 
@@ -188,37 +264,81 @@ PvP oraz rozwiązaniach tworzonych indywidualnie pod serwer.
 <img src="https://picsum.photos/600/400?2">
 <div class="card-content">
 <h3>PvP Combat System</h3>
-<p>System combat tag z blokadą logoutu, obsługą eventów oraz dynamicznymi cooldownami.</p>
+<p>System combat tag z blokadą logoutu.</p>
 <div class="tags">
 <span class="tag">PvP</span>
 <span class="tag">Event API</span>
 <span class="tag">1.21</span>
 </div>
-<a href="#">Zobacz demo</a>
+<a onclick="openModal(
+'PvP Combat System',
+'DEF456XYZ',
+[
+'Combat tag',
+'Blokada komend',
+'ActionBar info',
+'Konfigurowalne czasy',
+'Obsługa eventów'
+]
+)">Zobacz więcej</a>
 </div>
 </div>
 
-<!-- PROJEKT 3 -->
-<div class="card">
-<img src="https://picsum.photos/600/400?3">
-<div class="card-content">
-<h3>Advanced GUI Engine</h3>
-<p>System dynamicznych GUI z modularnym zarządzaniem akcjami i pełną konfiguracją.</p>
-<div class="tags">
-<span class="tag">Inventory API</span>
-<span class="tag">Custom UI</span>
-<span class="tag">Modular</span>
-</div>
-<a href="#">Zobacz demo</a>
 </div>
 </div>
 
+<!-- MODAL -->
+<div id="pluginModal" class="modal">
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<h2 id="modalTitle"></h2>
+
+<div class="modal-body">
+
+<div class="modal-video">
+<iframe id="modalVideo"
+width="100%" height="400"
+src=""
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="modal-info">
+<ul id="modalFeatures"></ul>
+</div>
+
+</div>
 </div>
 </div>
 
 <footer>
 © 2026 TwojNick – Minecraft Developer
 </footer>
+
+<script>
+function openModal(title, videoId, features){
+document.getElementById("pluginModal").style.display="block";
+document.getElementById("modalTitle").innerText=title;
+document.getElementById("modalVideo").src=
+"https://www.youtube.com/embed/"+videoId;
+
+let list=document.getElementById("modalFeatures");
+list.innerHTML="";
+features.forEach(f=>{
+let li=document.createElement("li");
+li.textContent="• "+f;
+list.appendChild(li);
+});
+}
+
+function closeModal(){
+document.getElementById("pluginModal").style.display="none";
+document.getElementById("modalVideo").src="";
+}
+</script>
 
 </body>
 </html>
