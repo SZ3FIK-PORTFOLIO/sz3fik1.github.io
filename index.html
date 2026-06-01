@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sz3fik | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -20,7 +20,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* CANVAS BACKGROUND */
+/* CANVAS */
 #bgCanvas{
 position:fixed;
 top:0;
@@ -32,90 +32,97 @@ z-index:-1;
 
 /* NAV */
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
 padding:30px 80px;
-position:relative;
-z-index:2;
-}
-
-.logo{
-font-weight:700;
+font-weight:800;
 font-size:20px;
-}
-
-.logo span{
-color:#3ba8ff;
 }
 
 /* HERO */
 .hero{
-max-width:900px;
-margin:60px auto;
-padding:40px;
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.1);
-position:relative;
-z-index:2;
+text-align:center;
+margin-top:60px;
+margin-bottom:80px;
 }
 
 .hero h1{
-font-size:36px;
-margin-bottom:20px;
-}
-
-.hero p{
-color:#b0c4de;
-line-height:1.6;
-}
-
-/* CORE CARD */
-.section{
-max-width:1100px;
-margin:80px auto;
-padding:0 40px;
-position:relative;
-z-index:2;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-padding:30px;
-border:1px solid rgba(255,255,255,0.08);
-}
-
-.card h2{
+font-size:40px;
 margin-bottom:15px;
 }
 
-.card p{
-color:#9fb3c8;
-margin-bottom:25px;
+.hero p{
+color:#94a3b8;
 }
 
-.systems{
-display:flex;
-flex-wrap:wrap;
-gap:12px;
+/* GRID SYSTEMS */
+.section{
+max-width:1300px;
+margin:auto;
+padding:0 40px 100px;
 }
 
-.system{
-background:rgba(59,168,255,0.15);
-color:#3ba8ff;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:40px;
+}
+
+/* SYSTEM CARD */
+.system-card{
+position:relative;
+height:260px;
+border-radius:20px;
+overflow:hidden;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 30px rgba(0,0,0,0.5);
+}
+
+.system-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(0.5);
+transition:0.4s;
+}
+
+.system-card:hover img{
+transform:scale(1.08);
+filter:brightness(0.6);
+}
+
+.system-content{
+position:absolute;
+bottom:0;
+padding:25px;
+width:100%;
+background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.system-content h2{
+font-size:22px;
+margin-bottom:8px;
+}
+
+.system-content p{
+font-size:14px;
+color:#cbd5e1;
+margin-bottom:15px;
+}
+
+.system-content button{
+background:#3ba8ff;
+border:none;
 padding:8px 16px;
 border-radius:20px;
-font-size:13px;
+color:white;
+font-weight:600;
 cursor:pointer;
 transition:0.3s;
 }
 
-.system:hover{
-background:#3ba8ff;
-color:white;
+.system-content button:hover{
+background:white;
+color:#3ba8ff;
 }
 
 /* MODAL */
@@ -127,40 +134,33 @@ left:0;
 top:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
+background:rgba(0,0,0,0.8);
 backdrop-filter:blur(6px);
 }
 
 .modal-content{
-background:#0d1b2a;
+background:#0f172a;
 margin:4% auto;
 padding:30px;
 border-radius:20px;
 width:85%;
 max-width:1200px;
-border:1px solid rgba(255,255,255,0.1);
-position:relative;
 animation:fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 .close{
-position:absolute;
-right:20px;
-top:15px;
-font-size:28px;
+float:right;
+font-size:26px;
 cursor:pointer;
 }
 
-.modal h2{
-margin-bottom:20px;
-}
-
 .modal-body{
+margin-top:20px;
 display:flex;
 gap:40px;
 flex-wrap:wrap;
@@ -172,20 +172,14 @@ flex:2;
 
 .modal-info{
 flex:1;
-}
-
-.modal-info p{
-color:#9fb3c8;
+color:#cbd5e1;
 line-height:1.6;
-margin-bottom:15px;
 }
 
 footer{
 text-align:center;
 padding:40px;
-color:#6c8aa6;
-position:relative;
-z-index:2;
+color:#64748b;
 }
 </style>
 </head>
@@ -194,29 +188,62 @@ z-index:2;
 
 <canvas id="bgCanvas"></canvas>
 
-<nav>
-<div class="logo">Sz3fik<span>.</span></div>
-</nav>
+<nav>Sz3fik.</nav>
 
 <div class="hero">
-<h1>Advanced Minecraft Core System</h1>
-<p>
-Modularny system Core dla Minecraft 1.21 (Paper).
-Kliknij w wybrany system, aby zobaczyć jak działa.
-</p>
+<h1>Minecraft Core System</h1>
+<p>Kliknij w system, aby zobaczyć jego działanie.</p>
 </div>
 
 <div class="section">
-<div class="card">
+<div class="grid">
 
-<h2>Dostępne Systemy</h2>
-<p>Kliknij w system, aby zobaczyć szczegóły oraz demo działania.</p>
+<!-- SKLEPY -->
+<div class="system-card">
+<img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=1200&auto=format&fit=crop">
+<div class="system-content">
+<h2>System Sklepów</h2>
+<p>Kupowanie, sprzedawanie oraz sklep za czas.</p>
+<button onclick="openSystem('System Sklepów','IHQKqiSkw68','Zaawansowany system sklepów z obsługą ekonomii oraz GUI.')">
+Zobacz system
+</button>
+</div>
+</div>
 
-<div class="systems">
-<div class="system" onclick="openSystem('Sklepy','IHQKqiSkw68','System sklepów z kupowaniem i sprzedawaniem przedmiotów oraz sklepem za czas.')">SKLEPY</div>
-<div class="system" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System osiągnięć – nagrody za wykonane zadania.')">OSIĄGNIĘCIA</div>
-<div class="system" onclick="openSystem('Strefa AFK','VIDEO_ID_3','System AFK – nagrody za przebywanie w strefie.')">STREFA AFK</div>
-<div class="system" onclick="openSystem('Skrzynki','VIDEO_ID_4','System skrzynek z losowym dropem.')">SKRZYNKI</div>
+<!-- OSIĄGNIĘCIA -->
+<div class="system-card">
+<img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?q=80&w=1200&auto=format&fit=crop">
+<div class="system-content">
+<h2>Osiągnięcia</h2>
+<p>Nagrody za wykonywanie zadań.</p>
+<button onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System osiągnięć z zapisem postępu i nagrodami.')">
+Zobacz system
+</button>
+</div>
+</div>
+
+<!-- AFK -->
+<div class="system-card">
+<img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop">
+<div class="system-content">
+<h2>Strefa AFK</h2>
+<p>Nagrody za przebywanie w strefie.</p>
+<button onclick="openSystem('Strefa AFK','VIDEO_ID_3','System wykrywania bezczynności i nagród.')">
+Zobacz system
+</button>
+</div>
+</div>
+
+<!-- SKRZYNKI -->
+<div class="system-card">
+<img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1200&auto=format&fit=crop">
+<div class="system-content">
+<h2>Skrzynki</h2>
+<p>Losowy drop i animacje otwierania.</p>
+<button onclick="openSystem('Skrzynki','VIDEO_ID_4','System crate z animacjami i kluczami.')">
+Zobacz system
+</button>
+</div>
 </div>
 
 </div>
@@ -227,18 +254,16 @@ Kliknij w wybrany system, aby zobaczyć jak działa.
 <div class="modal-content">
 <span class="close" onclick="closeModal()">&times;</span>
 <h2 id="modalTitle"></h2>
+
 <div class="modal-body">
 <div class="modal-video">
-<iframe id="modalVideo"
-width="100%" height="400"
-src=""
-frameborder="0"
-allowfullscreen></iframe>
+<iframe id="modalVideo" width="100%" height="400" src="" frameborder="0" allowfullscreen></iframe>
 </div>
 <div class="modal-info">
 <p id="modalDescription"></p>
 </div>
 </div>
+
 </div>
 </div>
 
@@ -259,23 +284,19 @@ document.getElementById("systemModal").style.display="none";
 document.getElementById("modalVideo").src="";
 }
 
-/* PARTICLE BACKGROUND */
+/* PARTICLES BACKGROUND */
+const canvas=document.getElementById("bgCanvas");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-const particleCount = 80;
-
-for(let i=0;i<particleCount;i++){
+let particles=[];
+for(let i=0;i<80;i++){
 particles.push({
-x: Math.random()*canvas.width,
-y: Math.random()*canvas.height,
-vx: (Math.random()-0.5)*0.5,
-vy: (Math.random()-0.5)*0.5
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+vx:(Math.random()-0.5)*0.5,
+vy:(Math.random()-0.5)*0.5
 });
 }
 
@@ -283,13 +304,12 @@ function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 for(let i=0;i<particles.length;i++){
-let p = particles[i];
+let p=particles[i];
+p.x+=p.vx;
+p.y+=p.vy;
 
-p.x += p.vx;
-p.y += p.vy;
-
-if(p.x<0 || p.x>canvas.width) p.vx*=-1;
-if(p.y<0 || p.y>canvas.height) p.vy*=-1;
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
 
 ctx.beginPath();
 ctx.arc(p.x,p.y,2,0,Math.PI*2);
@@ -297,9 +317,8 @@ ctx.fillStyle="#3ba8ff";
 ctx.fill();
 
 for(let j=i+1;j<particles.length;j++){
-let p2 = particles[j];
-let dist = Math.hypot(p.x-p2.x,p.y-p2.y);
-
+let p2=particles[j];
+let dist=Math.hypot(p.x-p2.x,p.y-p2.y);
 if(dist<120){
 ctx.beginPath();
 ctx.moveTo(p.x,p.y);
@@ -309,10 +328,8 @@ ctx.stroke();
 }
 }
 }
-
 requestAnimationFrame(animate);
 }
-
 animate();
 
 window.addEventListener("resize",()=>{
