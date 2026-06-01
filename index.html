@@ -3,212 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - Minecraft Developer</title>
+<title>Sz3fik | Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Inter',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
 body{
-    background:radial-gradient(circle at 20% 20%, #0d1b2a, #020617 70%);
-    color:white;
+background:radial-gradient(circle at 20% 20%, #0d1b2a, #020617 70%);
+color:white;
 }
 
 /* NAV */
 nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:30px 80px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 80px;
 }
 
 .logo{
-    font-weight:700;
-    font-size:20px;
+font-weight:700;
+font-size:20px;
 }
 
 .logo span{
-    color:#3ba8ff;
+color:#3ba8ff;
 }
 
 .button{
-    background:#3ba8ff;
-    padding:10px 20px;
-    border-radius:20px;
-    text-decoration:none;
-    color:white;
-    font-weight:600;
+background:#3ba8ff;
+padding:10px 20px;
+border-radius:20px;
+text-decoration:none;
+color:white;
+font-weight:600;
 }
 
 /* HERO */
 .hero{
-    max-width:900px;
-    margin:60px auto;
-    padding:40px;
-    background:rgba(255,255,255,0.05);
-    border-radius:20px;
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.1);
+max-width:900px;
+margin:60px auto;
+padding:40px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
 }
 
 .hero h1{
-    font-size:36px;
-    margin-bottom:20px;
+font-size:36px;
+margin-bottom:20px;
 }
 
 .hero p{
-    color:#b0c4de;
-    line-height:1.6;
+color:#b0c4de;
+line-height:1.6;
 }
 
-/* PROJECTS */
+/* PROJECT */
 .section{
-    max-width:1200px;
-    margin:80px auto;
-    padding:0 40px;
-}
-
-.section h2{
-    margin-bottom:40px;
-}
-
-.projects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
+max-width:1100px;
+margin:80px auto;
+padding:0 40px;
 }
 
 .card{
-    background:rgba(255,255,255,0.05);
-    border-radius:20px;
-    overflow:hidden;
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.08);
-    transition:0.3s;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+overflow:hidden;
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.08);
+padding:30px;
 }
 
-.card:hover{
-    transform:translateY(-8px);
-    border-color:#3ba8ff;
+.card h2{
+margin-bottom:15px;
 }
 
-.card img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
+.card p{
+color:#9fb3c8;
+margin-bottom:20px;
 }
 
-.card-content{
-    padding:20px;
+.systems{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:20px;
 }
 
-.card-content h3{
-    margin-bottom:10px;
+.system{
+background:rgba(59,168,255,0.15);
+color:#3ba8ff;
+padding:6px 14px;
+border-radius:15px;
+font-size:13px;
 }
 
-.card-content p{
-    color:#9fb3c8;
-    font-size:14px;
-    margin-bottom:15px;
-}
-
-.tags{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:15px;
-}
-
-.tag{
-    background:rgba(59,168,255,0.15);
-    color:#3ba8ff;
-    padding:5px 12px;
-    border-radius:15px;
-    font-size:12px;
-}
-
-.card-content a{
-    text-decoration:none;
-    color:#3ba8ff;
-    font-weight:600;
-    cursor:pointer;
+.card a{
+text-decoration:none;
+color:#3ba8ff;
+font-weight:600;
+cursor:pointer;
 }
 
 /* MODAL */
 
 .modal{
-    display:none;
-    position:fixed;
-    z-index:999;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.75);
-    backdrop-filter:blur(5px);
+display:none;
+position:fixed;
+z-index:999;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(6px);
 }
 
 .modal-content{
-    background:#0d1b2a;
-    margin:5% auto;
-    padding:30px;
-    border-radius:20px;
-    width:85%;
-    max-width:1100px;
-    border:1px solid rgba(255,255,255,0.1);
-    position:relative;
-    animation:fadeIn 0.3s ease;
+background:#0d1b2a;
+margin:4% auto;
+padding:30px;
+border-radius:20px;
+width:85%;
+max-width:1200px;
+border:1px solid rgba(255,255,255,0.1);
+position:relative;
+animation:fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-.modal-content h2{
-    margin-bottom:20px;
-}
-
-.modal-body{
-    display:flex;
-    gap:30px;
-    flex-wrap:wrap;
-}
-
-.modal-video{
-    flex:2;
-}
-
-.modal-info{
-    flex:1;
-}
-
-.modal-info ul{
-    list-style:none;
-}
-
-.modal-info li{
-    margin-bottom:10px;
-    color:#9fb3c8;
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 .close{
-    position:absolute;
-    right:20px;
-    top:15px;
-    font-size:28px;
-    cursor:pointer;
+position:absolute;
+right:20px;
+top:15px;
+font-size:28px;
+cursor:pointer;
+}
+
+.modal h2{
+margin-bottom:20px;
+}
+
+.modal-body{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.modal-video{
+flex:2;
+}
+
+.modal-info{
+flex:1;
+}
+
+.modal-info h3{
+margin-bottom:10px;
+color:#3ba8ff;
+}
+
+.modal-info p{
+color:#9fb3c8;
+margin-bottom:15px;
+line-height:1.6;
 }
 
 footer{
-    text-align:center;
-    padding:40px;
-    color:#6c8aa6;
+text-align:center;
+padding:40px;
+color:#6c8aa6;
 }
 </style>
 </head>
@@ -216,84 +192,51 @@ footer{
 <body>
 
 <nav>
-<div class="logo">TwojNick<span>.</span></div>
+<div class="logo">Sz3fik<span>.</span></div>
 <a href="#" class="button">Kontakt</a>
 </nav>
 
 <div class="hero">
-<h1>Zróbmy coś, co wyróżni Twój serwer.</h1>
+<h1>Advanced Minecraft Core System</h1>
 <p>
-Tworzę zaawansowane systemy do Minecraft 1.21 (Paper/Spigot).
-Specjalizuję się w modularnych Core'ach, systemach GUI,
-PvP oraz rozwiązaniach tworzonych indywidualnie pod serwer.
+Autorski, modularny system Core dla Minecraft 1.21 (Paper).
+Zawiera wiele rozbudowanych systemów tworzonych pod serwery Survival,
+PvP oraz Network.
 </p>
 </div>
 
 <div class="section">
-<h2>Moje Projekty</h2>
-
-<div class="projects">
-
-<!-- PROJEKT 1 -->
 <div class="card">
-<img src="https://picsum.photos/600/400?1">
-<div class="card-content">
-<h3>ServerCore Framework</h3>
-<p>Zaawansowany prywatny system zarządzania serwerem.</p>
-<div class="tags">
-<span class="tag">Java</span>
-<span class="tag">Paper 1.21</span>
-<span class="tag">Private</span>
-</div>
-<a onclick="openModal(
-'ServerCore Framework',
-'ABC123XYZ',
-[
-'System rang',
-'Custom GUI',
-'Teleport system',
-'Cooldown manager',
-'Modularna architektura'
-]
-)">Zobacz więcej</a>
-</div>
+
+<h2>Server Management Core</h2>
+<p>
+Zaawansowany framework zawierający wiele zintegrowanych systemów.
+Projekt prywatny, rozwijany modularnie.
+</p>
+
+<div class="systems">
+<span class="system">OSIĄGNIĘCIA</span>
+<span class="system">SKLEPY</span>
+<span class="system">STREFA AFK</span>
+<span class="system">SKRZYNKI</span>
+<span class="system">SYSTEM RANG</span>
+<span class="system">GUI</span>
+<span class="system">COOLDOWN</span>
+<span class="system">STATYSTYKI</span>
 </div>
 
-<!-- PROJEKT 2 -->
-<div class="card">
-<img src="https://picsum.photos/600/400?2">
-<div class="card-content">
-<h3>PvP Combat System</h3>
-<p>System combat tag z blokadą logoutu.</p>
-<div class="tags">
-<span class="tag">PvP</span>
-<span class="tag">Event API</span>
-<span class="tag">1.21</span>
-</div>
-<a onclick="openModal(
-'PvP Combat System',
-'DEF456XYZ',
-[
-'Combat tag',
-'Blokada komend',
-'ActionBar info',
-'Konfigurowalne czasy',
-'Obsługa eventów'
-]
-)">Zobacz więcej</a>
-</div>
-</div>
+<a onclick="openModal()">Zobacz szczegóły</a>
 
 </div>
 </div>
 
 <!-- MODAL -->
-<div id="pluginModal" class="modal">
+<div id="coreModal" class="modal">
 <div class="modal-content">
 
 <span class="close" onclick="closeModal()">&times;</span>
 
-<h2 id="modalTitle"></h2>
+<h2>Core System – Funkcjonalności</h2>
 
 <div class="modal-body">
 
@@ -307,7 +250,19 @@ allowfullscreen>
 </div>
 
 <div class="modal-info">
-<ul id="modalFeatures"></ul>
+
+<h3>Co zawiera system?</h3>
+
+<p><b>OSIĄGNIĘCIA:</b> System nagród za wykonane zadania, zapis postępu w bazie, dynamiczne GUI.</p>
+
+<p><b>SKLEPY:</b> Konfigurowalne sklepy z obsługą ekonomii i dynamicznymi cenami.</p>
+
+<p><b>STREFA AFK:</b> Wykrywanie bezczynności, teleport do strefy AFK, automatyczne nagrody.</p>
+
+<p><b>SKRZYNKI:</b> System crate z animacjami, kluczami i konfigurowalnymi dropami.</p>
+
+<p><b>ARCHITEKTURA:</b> Modularna budowa – każdy system działa niezależnie i może być rozwijany osobno.</p>
+
 </div>
 
 </div>
@@ -315,27 +270,18 @@ allowfullscreen>
 </div>
 
 <footer>
-© 2026 TwojNick – Minecraft Developer
+© 2026 Sz3fik – Discord: patrys123_.
 </footer>
 
 <script>
-function openModal(title, videoId, features){
-document.getElementById("pluginModal").style.display="block";
-document.getElementById("modalTitle").innerText=title;
+function openModal(){
+document.getElementById("coreModal").style.display="block";
 document.getElementById("modalVideo").src=
-"https://www.youtube.com/embed/"+videoId;
-
-let list=document.getElementById("modalFeatures");
-list.innerHTML="";
-features.forEach(f=>{
-let li=document.createElement("li");
-li.textContent="• "+f;
-list.appendChild(li);
-});
+"https://www.youtube.com/embed/TWOJ_FILM_ID";
 }
 
 function closeModal(){
-document.getElementById("pluginModal").style.display="none";
+document.getElementById("coreModal").style.display="none";
 document.getElementById("modalVideo").src="";
 }
 </script>
