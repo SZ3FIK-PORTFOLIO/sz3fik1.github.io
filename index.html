@@ -5,15 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sz3fik | Portfolio</title>
 
-<!-- Pixel Font -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 background:#020617;
@@ -22,7 +17,7 @@ overflow-x:hidden;
 font-family:'Press Start 2P', cursive;
 }
 
-/* CANVAS */
+/* PARTICLE CANVAS */
 #bgCanvas{
 position:fixed;
 top:0;
@@ -42,14 +37,7 @@ letter-spacing:2px;
 /* HERO */
 .hero{
 text-align:center;
-margin-top:60px;
-margin-bottom:100px;
-animation:fadeIn 1.2s ease forwards;
-opacity:0;
-}
-
-@keyframes fadeIn{
-to{opacity:1;}
+margin:60px 0 100px;
 }
 
 .hero h1{
@@ -57,8 +45,8 @@ font-size:28px;
 margin-bottom:20px;
 text-shadow:
 0 0 5px #3ba8ff,
-0 0 10px #3ba8ff,
-0 0 20px #3ba8ff;
+0 0 15px #3ba8ff,
+0 0 30px #3ba8ff;
 }
 
 .hero p{
@@ -81,29 +69,21 @@ gap:60px;
 
 /* SYSTEM CARD */
 .system-card{
-position:relative;
 height:200px;
-border-radius:20px;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-transition:0.4s;
-transform-style:preserve-3d;
 perspective:1000px;
+cursor:pointer;
 }
 
 .system-inner{
-position:relative;
-width:100%;
 height:100%;
 display:flex;
 align-items:center;
 justify-content:center;
 border-radius:20px;
-transition:transform 0.2s ease;
 background:linear-gradient(135deg,#0f172a,#1e3a8a);
 box-shadow:0 0 30px rgba(59,168,255,0.4);
+transition:transform 0.2s ease, box-shadow 0.3s;
+transform-style:preserve-3d;
 }
 
 .system-card span{
@@ -119,14 +99,8 @@ opacity:0;
 }
 
 @keyframes popIn{
-to{
-opacity:1;
-transform:scale(1);
-}
-from{
-opacity:0;
-transform:scale(0.7);
-}
+to{opacity:1; transform:scale(1);}
+from{opacity:0; transform:scale(0.7);}
 }
 
 .system-card:hover .system-inner{
@@ -135,42 +109,63 @@ box-shadow:0 0 50px #3ba8ff;
 
 /* MODAL */
 .modal{
-display:none;
 position:fixed;
-z-index:999;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
+inset:0;
+background:rgba(0,0,0,0.75);
 backdrop-filter:blur(6px);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+pointer-events:none;
+transition:opacity 0.3s ease;
+}
+
+.modal.active{
+opacity:1;
+pointer-events:auto;
 }
 
 .modal-content{
 background:#0f172a;
-margin:4% auto;
-padding:30px;
-border-radius:20px;
 width:85%;
 max-width:1100px;
-font-family:Arial, sans-serif;
+border-radius:20px;
+padding:30px;
+transform:scale(0.8);
+opacity:0;
+transition:all 0.3s ease;
+}
+
+.modal.active .modal-content{
+transform:scale(1);
+opacity:1;
 }
 
 .close{
 float:right;
-font-size:22px;
+font-size:20px;
 cursor:pointer;
 }
 
 .modal-body{
-margin-top:20px;
+margin-top:25px;
 display:flex;
 gap:40px;
 flex-wrap:wrap;
 }
 
+.modal-video{
+flex:2;
+}
+
+.modal-video iframe{
+border-radius:15px;
+}
+
 .modal-info{
 flex:1;
+font-family:Arial;
 color:#cbd5e1;
 line-height:1.6;
 }
@@ -198,11 +193,11 @@ font-family:Arial;
 <div class="section">
 <div class="grid">
 
-<div class="system-card" onclick="openSystem('System Sklepów','IHQKqiSkw68','Zaawansowany system sklepów.')">
+<div class="system-card" onclick="openSystem('System Sklepów','IHQKqiSkw68','Zaawansowany system sklepów z kupowaniem i sprzedawaniem przedmiotów.')">
 <div class="system-inner"><span>SKLEPY</span></div>
 </div>
 
-<div class="system-card" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System nagród za zadania.')">
+<div class="system-card" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System nagród za wykonywanie zadań.')">
 <div class="system-inner"><span>OSIĄGNIĘCIA</span></div>
 </div>
 
@@ -210,7 +205,7 @@ font-family:Arial;
 <div class="system-inner"><span>STREFA AFK</span></div>
 </div>
 
-<div class="system-card" onclick="openSystem('Skrzynki','VIDEO_ID_4','System skrzynek z dropem.')">
+<div class="system-card" onclick="openSystem('Skrzynki','VIDEO_ID_4','System skrzynek z losowym dropem.')">
 <div class="system-inner"><span>SKRZYNKI</span></div>
 </div>
 
@@ -218,18 +213,28 @@ font-family:Arial;
 </div>
 
 <!-- MODAL -->
-<div id="systemModal" class="modal">
+<div id="systemModal" class="modal" onclick="outsideClick(event)">
 <div class="modal-content">
+
 <span class="close" onclick="closeModal()">&times;</span>
-<h2 id="modalTitle"></h2>
+
+<h2 id="modalTitle" style="margin-bottom:20px;"></h2>
 
 <div class="modal-body">
-<iframe id="modalVideo" width="100%" height="400" src="" frameborder="0" allowfullscreen></iframe>
+
+<div class="modal-video">
+<iframe id="modalVideo"
+width="100%" height="400"
+src=""
+frameborder="0"
+allowfullscreen></iframe>
+</div>
+
 <div class="modal-info">
 <p id="modalDescription"></p>
 </div>
-</div>
 
+</div>
 </div>
 </div>
 
@@ -239,15 +244,23 @@ font-family:Arial;
 
 <script>
 function openSystem(title, videoId, description){
-document.getElementById("systemModal").style.display="block";
+const modal=document.getElementById("systemModal");
+modal.classList.add("active");
 document.getElementById("modalTitle").innerText=title;
 document.getElementById("modalDescription").innerText=description;
 document.getElementById("modalVideo").src="https://www.youtube.com/embed/"+videoId;
 }
 
 function closeModal(){
-document.getElementById("systemModal").style.display="none";
+const modal=document.getElementById("systemModal");
+modal.classList.remove("active");
 document.getElementById("modalVideo").src="";
+}
+
+function outsideClick(e){
+if(e.target.id==="systemModal"){
+closeModal();
+}
 }
 
 /* 3D TILT */
