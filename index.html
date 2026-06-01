@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sz3fik | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -45,7 +45,7 @@ margin-bottom:80px;
 }
 
 .hero h1{
-font-size:40px;
+font-size:42px;
 margin-bottom:15px;
 }
 
@@ -53,7 +53,7 @@ margin-bottom:15px;
 color:#94a3b8;
 }
 
-/* GRID SYSTEMS */
+/* GRID */
 .section{
 max-width:1300px;
 margin:auto;
@@ -62,67 +62,69 @@ padding:0 40px 100px;
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:40px;
 }
 
 /* SYSTEM CARD */
 .system-card{
 position:relative;
-height:260px;
+height:240px;
 border-radius:20px;
 overflow:hidden;
 cursor:pointer;
 transition:0.4s;
-box-shadow:0 0 30px rgba(0,0,0,0.5);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+font-weight:800;
+letter-spacing:2px;
+text-transform:uppercase;
 }
 
-.system-card img{
-width:100%;
-height:100%;
-object-fit:cover;
-filter:brightness(0.5);
-transition:0.4s;
-}
-
-.system-card:hover img{
-transform:scale(1.08);
-filter:brightness(0.6);
-}
-
-.system-content{
+.system-card::before{
+content:"";
 position:absolute;
-bottom:0;
-padding:25px;
-width:100%;
-background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+width:200%;
+height:200%;
+background:radial-gradient(circle at center,#3ba8ff33,transparent 70%);
+animation:rotate 8s linear infinite;
 }
 
-.system-content h2{
-font-size:22px;
-margin-bottom:8px;
+@keyframes rotate{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
 
-.system-content p{
-font-size:14px;
-color:#cbd5e1;
-margin-bottom:15px;
+.system-card span{
+position:relative;
+z-index:2;
 }
 
-.system-content button{
-background:#3ba8ff;
-border:none;
-padding:8px 16px;
-border-radius:20px;
-color:white;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
+/* Different colors */
+.sklepy{
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+box-shadow:0 0 40px #3b82f6aa;
 }
 
-.system-content button:hover{
-background:white;
-color:#3ba8ff;
+.osiagniecia{
+background:linear-gradient(135deg,#0f172a,#064e3b);
+box-shadow:0 0 40px #10b981aa;
+}
+
+.afk{
+background:linear-gradient(135deg,#0f172a,#7c2d12);
+box-shadow:0 0 40px #f97316aa;
+}
+
+.skrzynki{
+background:linear-gradient(135deg,#0f172a,#4c1d95);
+box-shadow:0 0 40px #a855f7aa;
+}
+
+.system-card:hover{
+transform:translateY(-10px) scale(1.05);
 }
 
 /* MODAL */
@@ -192,58 +194,26 @@ color:#64748b;
 
 <div class="hero">
 <h1>Minecraft Core System</h1>
-<p>Kliknij w system, aby zobaczyć jego działanie.</p>
+<p>Kliknij system, aby zobaczyć demo działania.</p>
 </div>
 
 <div class="section">
 <div class="grid">
 
-<!-- SKLEPY -->
-<div class="system-card">
-<img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=1200&auto=format&fit=crop">
-<div class="system-content">
-<h2>System Sklepów</h2>
-<p>Kupowanie, sprzedawanie oraz sklep za czas.</p>
-<button onclick="openSystem('System Sklepów','IHQKqiSkw68','Zaawansowany system sklepów z obsługą ekonomii oraz GUI.')">
-Zobacz system
-</button>
-</div>
+<div class="system-card sklepy" onclick="openSystem('System Sklepów','IHQKqiSkw68','Zaawansowany system sklepów z kupowaniem i sprzedawaniem przedmiotów.')">
+<span>SKLEPY</span>
 </div>
 
-<!-- OSIĄGNIĘCIA -->
-<div class="system-card">
-<img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?q=80&w=1200&auto=format&fit=crop">
-<div class="system-content">
-<h2>Osiągnięcia</h2>
-<p>Nagrody za wykonywanie zadań.</p>
-<button onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System osiągnięć z zapisem postępu i nagrodami.')">
-Zobacz system
-</button>
-</div>
+<div class="system-card osiagniecia" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System nagród za wykonywanie zadań.')">
+<span>OSIĄGNIĘCIA</span>
 </div>
 
-<!-- AFK -->
-<div class="system-card">
-<img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop">
-<div class="system-content">
-<h2>Strefa AFK</h2>
-<p>Nagrody za przebywanie w strefie.</p>
-<button onclick="openSystem('Strefa AFK','VIDEO_ID_3','System wykrywania bezczynności i nagród.')">
-Zobacz system
-</button>
-</div>
+<div class="system-card afk" onclick="openSystem('Strefa AFK','VIDEO_ID_3','System AFK z nagrodami za przebywanie.')">
+<span>STREFA AFK</span>
 </div>
 
-<!-- SKRZYNKI -->
-<div class="system-card">
-<img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1200&auto=format&fit=crop">
-<div class="system-content">
-<h2>Skrzynki</h2>
-<p>Losowy drop i animacje otwierania.</p>
-<button onclick="openSystem('Skrzynki','VIDEO_ID_4','System crate z animacjami i kluczami.')">
-Zobacz system
-</button>
-</div>
+<div class="system-card skrzynki" onclick="openSystem('Skrzynki','VIDEO_ID_4','System skrzynek z losowym dropem.')">
+<span>SKRZYNKI</span>
 </div>
 
 </div>
@@ -263,7 +233,6 @@ Zobacz system
 <p id="modalDescription"></p>
 </div>
 </div>
-
 </div>
 </div>
 
@@ -284,14 +253,14 @@ document.getElementById("systemModal").style.display="none";
 document.getElementById("modalVideo").src="";
 }
 
-/* PARTICLES BACKGROUND */
+/* PARTICLES */
 const canvas=document.getElementById("bgCanvas");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
 let particles=[];
-for(let i=0;i<80;i++){
+for(let i=0;i<70;i++){
 particles.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
@@ -302,40 +271,20 @@ vy:(Math.random()-0.5)*0.5
 
 function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-
 for(let i=0;i<particles.length;i++){
 let p=particles[i];
 p.x+=p.vx;
 p.y+=p.vy;
-
 if(p.x<0||p.x>canvas.width)p.vx*=-1;
 if(p.y<0||p.y>canvas.height)p.vy*=-1;
-
 ctx.beginPath();
 ctx.arc(p.x,p.y,2,0,Math.PI*2);
 ctx.fillStyle="#3ba8ff";
 ctx.fill();
-
-for(let j=i+1;j<particles.length;j++){
-let p2=particles[j];
-let dist=Math.hypot(p.x-p2.x,p.y-p2.y);
-if(dist<120){
-ctx.beginPath();
-ctx.moveTo(p.x,p.y);
-ctx.lineTo(p2.x,p2.y);
-ctx.strokeStyle="rgba(59,168,255,"+(1-dist/120)+")";
-ctx.stroke();
-}
-}
 }
 requestAnimationFrame(animate);
 }
 animate();
-
-window.addEventListener("resize",()=>{
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-});
 </script>
 
 </body>
