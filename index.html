@@ -36,15 +36,6 @@ font-size:20px;
 color:#3ba8ff;
 }
 
-.button{
-background:#3ba8ff;
-padding:10px 20px;
-border-radius:20px;
-text-decoration:none;
-color:white;
-font-weight:600;
-}
-
 /* HERO */
 .hero{
 max-width:900px;
@@ -66,7 +57,7 @@ color:#b0c4de;
 line-height:1.6;
 }
 
-/* PROJECT */
+/* CORE CARD */
 .section{
 max-width:1100px;
 margin:80px auto;
@@ -76,10 +67,8 @@ padding:0 40px;
 .card{
 background:rgba(255,255,255,0.05);
 border-radius:20px;
-overflow:hidden;
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.08);
 padding:30px;
+border:1px solid rgba(255,255,255,0.08);
 }
 
 .card h2{
@@ -88,29 +77,28 @@ margin-bottom:15px;
 
 .card p{
 color:#9fb3c8;
-margin-bottom:20px;
+margin-bottom:25px;
 }
 
 .systems{
 display:flex;
 flex-wrap:wrap;
-gap:10px;
-margin-bottom:20px;
+gap:12px;
 }
 
 .system{
 background:rgba(59,168,255,0.15);
 color:#3ba8ff;
-padding:6px 14px;
-border-radius:15px;
+padding:8px 16px;
+border-radius:20px;
 font-size:13px;
+cursor:pointer;
+transition:0.3s;
 }
 
-.card a{
-text-decoration:none;
-color:#3ba8ff;
-font-weight:600;
-cursor:pointer;
+.system:hover{
+background:#3ba8ff;
+color:white;
 }
 
 /* MODAL */
@@ -170,15 +158,10 @@ flex:2;
 flex:1;
 }
 
-.modal-info h3{
-margin-bottom:10px;
-color:#3ba8ff;
-}
-
 .modal-info p{
 color:#9fb3c8;
-margin-bottom:15px;
 line-height:1.6;
+margin-bottom:15px;
 }
 
 footer{
@@ -193,50 +176,47 @@ color:#6c8aa6;
 
 <nav>
 <div class="logo">Sz3fik<span>.</span></div>
-<a href="#" class="button">Kontakt</a>
 </nav>
 
 <div class="hero">
 <h1>Advanced Minecraft Core System</h1>
 <p>
-Autorski, modularny system Core dla Minecraft 1.21 (Paper).
-Zawiera wiele rozbudowanych systemów tworzonych pod serwery Survival,
-PvP oraz Network.
+Modularny system Core dla Minecraft 1.21 (Paper).
+Kliknij w wybrany system, aby zobaczyć jak działa.
 </p>
 </div>
 
 <div class="section">
 <div class="card">
 
-<h2>Server Management Core</h2>
-<p>
-Zaawansowany framework zawierający wiele zintegrowanych systemów.
-Projekt prywatny, rozwijany modularnie.
-</p>
+<h2>Dostępne Systemy</h2>
+<p>Kliknij w system, aby zobaczyć szczegóły oraz demo działania.</p>
 
 <div class="systems">
-<span class="system">OSIĄGNIĘCIA</span>
-<span class="system">SKLEPY</span>
-<span class="system">STREFA AFK</span>
-<span class="system">SKRZYNKI</span>
-<span class="system">SYSTEM RANG</span>
-<span class="system">GUI</span>
-<span class="system">COOLDOWN</span>
-<span class="system">STATYSTYKI</span>
-</div>
+<div class="system" onclick="openSystem('Sklepy','IHQKqiSkw68','Zaawansowany system sklepów z dynamiczną konfiguracją, obsługą ekonomii oraz GUI.')">SKLEPY</div>
 
-<a onclick="openModal()">Zobacz szczegóły</a>
+<div class="system" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System osiągnięć zapisujący postęp gracza, nagrody oraz dynamiczne GUI.')">OSIĄGNIĘCIA</div>
+
+<div class="system" onclick="openSystem('Strefa AFK','VIDEO_ID_3','Automatyczne wykrywanie bezczynności, teleport do strefy AFK oraz nagrody.')">STREFA AFK</div>
+
+<div class="system" onclick="openSystem('Skrzynki','VIDEO_ID_4','System crate z animacjami, kluczami i konfigurowalnym dropem.')">SKRZYNKI</div>
+
+<div class="system" onclick="openSystem('System Rang','VIDEO_ID_5','Rozbudowany system rang z uprawnieniami i integracją z czatem.')">SYSTEM RANG</div>
+
+<div class="system" onclick="openSystem('GUI Framework','VIDEO_ID_6','Modularny system GUI z obsługą zdarzeń i dynamiczną zawartością.')">GUI</div>
+
+</div>
 
 </div>
 </div>
 
 <!-- MODAL -->
-<div id="coreModal" class="modal">
+<div id="systemModal" class="modal">
 <div class="modal-content">
 
 <span class="close" onclick="closeModal()">&times;</span>
 
-<h2>Core System – Funkcjonalności</h2>
+<h2 id="modalTitle"></h2>
 
 <div class="modal-body">
 
@@ -250,19 +230,7 @@ allowfullscreen>
 </div>
 
 <div class="modal-info">
-
-<h3>Co zawiera system?</h3>
-
-<p><b>OSIĄGNIĘCIA:</b> System nagród za wykonane zadania, zapis postępu w bazie, dynamiczne GUI.</p>
-
-<p><b>SKLEPY:</b> Konfigurowalne sklepy z obsługą ekonomii i dynamicznymi cenami.</p>
-
-<p><b>STREFA AFK:</b> Wykrywanie bezczynności, teleport do strefy AFK, automatyczne nagrody.</p>
-
-<p><b>SKRZYNKI:</b> System crate z animacjami, kluczami i konfigurowalnymi dropami.</p>
-
-<p><b>ARCHITEKTURA:</b> Modularna budowa – każdy system działa niezależnie i może być rozwijany osobno.</p>
-
+<p id="modalDescription"></p>
 </div>
 
 </div>
@@ -274,14 +242,16 @@ allowfullscreen>
 </footer>
 
 <script>
-function openModal(){
-document.getElementById("coreModal").style.display="block";
+function openSystem(title, videoId, description){
+document.getElementById("systemModal").style.display="block";
+document.getElementById("modalTitle").innerText=title;
+document.getElementById("modalDescription").innerText=description;
 document.getElementById("modalVideo").src=
-"https://www.youtube.com/embed/TWOJ_FILM_ID";
+"https://www.youtube.com/embed/"+videoId;
 }
 
 function closeModal(){
-document.getElementById("coreModal").style.display="none";
+document.getElementById("systemModal").style.display="none";
 document.getElementById("modalVideo").src="";
 }
 </script>
