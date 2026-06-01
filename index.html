@@ -4,20 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sz3fik | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
+
+<!-- Pixel Font -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
 }
 
 body{
 background:#020617;
 color:white;
 overflow-x:hidden;
+font-family:'Press Start 2P', cursive;
 }
 
 /* CANVAS */
@@ -32,24 +34,35 @@ z-index:-1;
 
 /* NAV */
 nav{
-padding:30px 80px;
-font-weight:800;
-font-size:20px;
+padding:30px 60px;
+font-size:14px;
+letter-spacing:2px;
 }
 
 /* HERO */
 .hero{
 text-align:center;
 margin-top:60px;
-margin-bottom:80px;
+margin-bottom:100px;
+animation:fadeIn 1.2s ease forwards;
+opacity:0;
+}
+
+@keyframes fadeIn{
+to{opacity:1;}
 }
 
 .hero h1{
-font-size:42px;
-margin-bottom:15px;
+font-size:28px;
+margin-bottom:20px;
+text-shadow:
+0 0 5px #3ba8ff,
+0 0 10px #3ba8ff,
+0 0 20px #3ba8ff;
 }
 
 .hero p{
+font-size:10px;
 color:#94a3b8;
 }
 
@@ -57,74 +70,67 @@ color:#94a3b8;
 .section{
 max-width:1300px;
 margin:auto;
-padding:0 40px 100px;
+padding:0 40px 120px;
 }
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:40px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:60px;
 }
 
 /* SYSTEM CARD */
 .system-card{
 position:relative;
-height:240px;
+height:200px;
 border-radius:20px;
-overflow:hidden;
-cursor:pointer;
-transition:0.4s;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:28px;
-font-weight:800;
-letter-spacing:2px;
-text-transform:uppercase;
+cursor:pointer;
+transition:0.4s;
+transform-style:preserve-3d;
+perspective:1000px;
 }
 
-.system-card::before{
-content:"";
-position:absolute;
-width:200%;
-height:200%;
-background:radial-gradient(circle at center,#3ba8ff33,transparent 70%);
-animation:rotate 8s linear infinite;
-}
-
-@keyframes rotate{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
+.system-inner{
+position:relative;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:20px;
+transition:transform 0.2s ease;
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+box-shadow:0 0 30px rgba(59,168,255,0.4);
 }
 
 .system-card span{
-position:relative;
-z-index:2;
+font-size:18px;
+letter-spacing:3px;
+text-transform:uppercase;
+text-shadow:
+0 0 5px #3ba8ff,
+0 0 15px #3ba8ff,
+0 0 30px #3ba8ff;
+animation:popIn 0.6s ease forwards;
+opacity:0;
 }
 
-/* Different colors */
-.sklepy{
-background:linear-gradient(135deg,#0f172a,#1e3a8a);
-box-shadow:0 0 40px #3b82f6aa;
+@keyframes popIn{
+to{
+opacity:1;
+transform:scale(1);
+}
+from{
+opacity:0;
+transform:scale(0.7);
+}
 }
 
-.osiagniecia{
-background:linear-gradient(135deg,#0f172a,#064e3b);
-box-shadow:0 0 40px #10b981aa;
-}
-
-.afk{
-background:linear-gradient(135deg,#0f172a,#7c2d12);
-box-shadow:0 0 40px #f97316aa;
-}
-
-.skrzynki{
-background:linear-gradient(135deg,#0f172a,#4c1d95);
-box-shadow:0 0 40px #a855f7aa;
-}
-
-.system-card:hover{
-transform:translateY(-10px) scale(1.05);
+.system-card:hover .system-inner{
+box-shadow:0 0 50px #3ba8ff;
 }
 
 /* MODAL */
@@ -146,18 +152,13 @@ margin:4% auto;
 padding:30px;
 border-radius:20px;
 width:85%;
-max-width:1200px;
-animation:fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
+max-width:1100px;
+font-family:Arial, sans-serif;
 }
 
 .close{
 float:right;
-font-size:26px;
+font-size:22px;
 cursor:pointer;
 }
 
@@ -166,10 +167,6 @@ margin-top:20px;
 display:flex;
 gap:40px;
 flex-wrap:wrap;
-}
-
-.modal-video{
-flex:2;
 }
 
 .modal-info{
@@ -182,6 +179,7 @@ footer{
 text-align:center;
 padding:40px;
 color:#64748b;
+font-family:Arial;
 }
 </style>
 </head>
@@ -193,27 +191,27 @@ color:#64748b;
 <nav>Sz3fik.</nav>
 
 <div class="hero">
-<h1>Minecraft Core System</h1>
-<p>Kliknij system, aby zobaczyć demo działania.</p>
+<h1>MINECRAFT CORE SYSTEM</h1>
+<p>Kliknij system aby zobaczyć demo.</p>
 </div>
 
 <div class="section">
 <div class="grid">
 
-<div class="system-card sklepy" onclick="openSystem('System Sklepów','IHQKqiSkw68','Zaawansowany system sklepów z kupowaniem i sprzedawaniem przedmiotów.')">
-<span>SKLEPY</span>
+<div class="system-card" onclick="openSystem('System Sklepów','IHQKqiSkw68','Zaawansowany system sklepów.')">
+<div class="system-inner"><span>SKLEPY</span></div>
 </div>
 
-<div class="system-card osiagniecia" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System nagród za wykonywanie zadań.')">
-<span>OSIĄGNIĘCIA</span>
+<div class="system-card" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System nagród za zadania.')">
+<div class="system-inner"><span>OSIĄGNIĘCIA</span></div>
 </div>
 
-<div class="system-card afk" onclick="openSystem('Strefa AFK','VIDEO_ID_3','System AFK z nagrodami za przebywanie.')">
-<span>STREFA AFK</span>
+<div class="system-card" onclick="openSystem('Strefa AFK','VIDEO_ID_3','System AFK z nagrodami.')">
+<div class="system-inner"><span>STREFA AFK</span></div>
 </div>
 
-<div class="system-card skrzynki" onclick="openSystem('Skrzynki','VIDEO_ID_4','System skrzynek z losowym dropem.')">
-<span>SKRZYNKI</span>
+<div class="system-card" onclick="openSystem('Skrzynki','VIDEO_ID_4','System skrzynek z dropem.')">
+<div class="system-inner"><span>SKRZYNKI</span></div>
 </div>
 
 </div>
@@ -226,13 +224,12 @@ color:#64748b;
 <h2 id="modalTitle"></h2>
 
 <div class="modal-body">
-<div class="modal-video">
 <iframe id="modalVideo" width="100%" height="400" src="" frameborder="0" allowfullscreen></iframe>
-</div>
 <div class="modal-info">
 <p id="modalDescription"></p>
 </div>
 </div>
+
 </div>
 </div>
 
@@ -253,6 +250,24 @@ document.getElementById("systemModal").style.display="none";
 document.getElementById("modalVideo").src="";
 }
 
+/* 3D TILT */
+document.querySelectorAll('.system-card').forEach(card=>{
+card.addEventListener('mousemove',(e)=>{
+const inner=card.querySelector('.system-inner');
+const rect=card.getBoundingClientRect();
+const x=e.clientX-rect.left;
+const y=e.clientY-rect.top;
+const centerX=rect.width/2;
+const centerY=rect.height/2;
+const rotateX=(y-centerY)/15;
+const rotateY=(centerX-x)/15;
+inner.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+card.addEventListener('mouseleave',()=>{
+card.querySelector('.system-inner').style.transform="rotateX(0) rotateY(0)";
+});
+});
+
 /* PARTICLES */
 const canvas=document.getElementById("bgCanvas");
 const ctx=canvas.getContext("2d");
@@ -271,8 +286,7 @@ vy:(Math.random()-0.5)*0.5
 
 function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-for(let i=0;i<particles.length;i++){
-let p=particles[i];
+for(let p of particles){
 p.x+=p.vx;
 p.y+=p.vy;
 if(p.x<0||p.x>canvas.width)p.vx*=-1;
