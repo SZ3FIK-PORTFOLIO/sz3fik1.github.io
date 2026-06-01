@@ -15,8 +15,19 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-background:radial-gradient(circle at 20% 20%, #0d1b2a, #020617 70%);
+background:#020617;
 color:white;
+overflow-x:hidden;
+}
+
+/* CANVAS BACKGROUND */
+#bgCanvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
 }
 
 /* NAV */
@@ -25,6 +36,8 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:30px 80px;
+position:relative;
+z-index:2;
 }
 
 .logo{
@@ -45,6 +58,8 @@ background:rgba(255,255,255,0.05);
 border-radius:20px;
 backdrop-filter:blur(15px);
 border:1px solid rgba(255,255,255,0.1);
+position:relative;
+z-index:2;
 }
 
 .hero h1{
@@ -62,6 +77,8 @@ line-height:1.6;
 max-width:1100px;
 margin:80px auto;
 padding:0 40px;
+position:relative;
+z-index:2;
 }
 
 .card{
@@ -102,7 +119,6 @@ color:white;
 }
 
 /* MODAL */
-
 .modal{
 display:none;
 position:fixed;
@@ -168,11 +184,15 @@ footer{
 text-align:center;
 padding:40px;
 color:#6c8aa6;
+position:relative;
+z-index:2;
 }
 </style>
 </head>
 
 <body>
+
+<canvas id="bgCanvas"></canvas>
 
 <nav>
 <div class="logo">Sz3fik<span>.</span></div>
@@ -193,14 +213,10 @@ Kliknij w wybrany system, aby zobaczyć jak działa.
 <p>Kliknij w system, aby zobaczyć szczegóły oraz demo działania.</p>
 
 <div class="systems">
-<div class="system" onclick="openSystem('Sklepy','IHQKqiSkw68','System sklepów z kupowaniem przedmiotów oraz sprzedawaniem przedmiotów i sklepem za czas')">SKLEPY</div>
-
-<div class="system" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System osiągnięc otrzymywanie nagród za rózne osiąnięcia')">OSIĄGNIĘCIA</div>
-
-<div class="system" onclick="openSystem('Strefa AFK','VIDEO_ID_3','System Strefy AFK otrzymywanie nagród za przebywanie w tej strefie')">STREFA AFK</div>
-
-<div class="system" onclick="openSystem('Skrzynki','VIDEO_ID_4','System otwierania skrzynek z których dropią przedmioty')">SKRZYNKI</div>
-
+<div class="system" onclick="openSystem('Sklepy','IHQKqiSkw68','System sklepów z kupowaniem i sprzedawaniem przedmiotów oraz sklepem za czas.')">SKLEPY</div>
+<div class="system" onclick="openSystem('Osiągnięcia','VIDEO_ID_2','System osiągnięć – nagrody za wykonane zadania.')">OSIĄGNIĘCIA</div>
+<div class="system" onclick="openSystem('Strefa AFK','VIDEO_ID_3','System AFK – nagrody za przebywanie w strefie.')">STREFA AFK</div>
+<div class="system" onclick="openSystem('Skrzynki','VIDEO_ID_4','System skrzynek z losowym dropem.')">SKRZYNKI</div>
 </div>
 
 </div>
@@ -209,26 +225,19 @@ Kliknij w wybrany system, aby zobaczyć jak działa.
 <!-- MODAL -->
 <div id="systemModal" class="modal">
 <div class="modal-content">
-
 <span class="close" onclick="closeModal()">&times;</span>
-
 <h2 id="modalTitle"></h2>
-
 <div class="modal-body">
-
 <div class="modal-video">
 <iframe id="modalVideo"
 width="100%" height="400"
 src=""
 frameborder="0"
-allowfullscreen>
-</iframe>
+allowfullscreen></iframe>
 </div>
-
 <div class="modal-info">
 <p id="modalDescription"></p>
 </div>
-
 </div>
 </div>
 </div>
@@ -242,14 +251,74 @@ function openSystem(title, videoId, description){
 document.getElementById("systemModal").style.display="block";
 document.getElementById("modalTitle").innerText=title;
 document.getElementById("modalDescription").innerText=description;
-document.getElementById("modalVideo").src=
-"https://www.youtube.com/embed/"+videoId;
+document.getElementById("modalVideo").src="https://www.youtube.com/embed/"+videoId;
 }
 
 function closeModal(){
 document.getElementById("systemModal").style.display="none";
 document.getElementById("modalVideo").src="";
 }
+
+/* PARTICLE BACKGROUND */
+
+const canvas = document.getElementById("bgCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const particleCount = 80;
+
+for(let i=0;i<particleCount;i++){
+particles.push({
+x: Math.random()*canvas.width,
+y: Math.random()*canvas.height,
+vx: (Math.random()-0.5)*0.5,
+vy: (Math.random()-0.5)*0.5
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let i=0;i<particles.length;i++){
+let p = particles[i];
+
+p.x += p.vx;
+p.y += p.vy;
+
+if(p.x<0 || p.x>canvas.width) p.vx*=-1;
+if(p.y<0 || p.y>canvas.height) p.vy*=-1;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,2,0,Math.PI*2);
+ctx.fillStyle="#3ba8ff";
+ctx.fill();
+
+for(let j=i+1;j<particles.length;j++){
+let p2 = particles[j];
+let dist = Math.hypot(p.x-p2.x,p.y-p2.y);
+
+if(dist<120){
+ctx.beginPath();
+ctx.moveTo(p.x,p.y);
+ctx.lineTo(p2.x,p2.y);
+ctx.strokeStyle="rgba(59,168,255,"+(1-dist/120)+")";
+ctx.stroke();
+}
+}
+}
+
+requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
 </script>
 
 </body>
