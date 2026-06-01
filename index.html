@@ -3,144 +3,221 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minecraft Developer Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Portfolio - Minecraft Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body {
+* {
     margin: 0;
-    background-color: #1b1b1b;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at 20% 20%, #0d1b2a, #020617 70%);
     color: white;
-    font-family: Arial, sans-serif;
+    min-height: 100vh;
 }
 
-header {
-    background: linear-gradient(90deg, #3a7d2c, #6ccf3d);
-    padding: 50px 20px;
-    text-align: center;
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 80px;
 }
 
-header h1 {
-    font-family: 'Press Start 2P', cursive;
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #3ba8ff;
+}
+
+.button {
+    background: #3ba8ff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+/* HERO */
+.hero {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #b0c4de;
+    line-height: 1.6;
+}
+
+/* PROJECTS */
+.section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 40px;
+}
+
+.section h2 {
+    margin-bottom: 40px;
     font-size: 28px;
 }
 
-.section {
-    max-width: 1000px;
-    margin: auto;
-    padding: 40px 20px;
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-.plugin {
-    background: #2a2a2a;
-    border-left: 8px solid #6ccf3d;
+.card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #3ba8ff;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-content {
     padding: 20px;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.2);
 }
 
-.plugin h2 {
-    color: #6ccf3d;
-    margin-top: 0;
+.card-content h3 {
+    margin-bottom: 10px;
 }
 
-ul {
-    padding-left: 20px;
+.card-content p {
+    color: #9fb3c8;
+    font-size: 14px;
+    margin-bottom: 15px;
 }
 
-iframe {
-    margin-top: 15px;
-    border-radius: 8px;
+.tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.tag {
+    background: rgba(59,168,255,0.15);
+    color: #3ba8ff;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+.card-content a {
+    text-decoration: none;
+    color: #3ba8ff;
+    font-weight: 600;
 }
 
 footer {
     text-align: center;
-    padding: 30px;
-    background: #111;
-    color: #6ccf3d;
-}
-a {
-    color: #6ccf3d;
-    text-decoration: none;
+    padding: 40px;
+    color: #6c8aa6;
 }
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>⛏ Minecraft Plugin Developer</h1>
-<p>Java • Paper 1.21 • Autorski CORE na serwer </p>
-</header>
+<nav>
+<div class="logo">TwojNick<span>.</span></div>
+<a href="#" class="button">Kontakt</a>
+</nav>
+
+<div class="hero">
+<h1>Zróbmy coś, co wyróżni Twój serwer.</h1>
+<p>
+Tworzę zaawansowane systemy do Minecraft 1.21 (Paper/Spigot).
+Specjalizuję się w modularnych Core'ach, systemach GUI,
+PvP oraz rozwiązaniach tworzonych indywidualnie pod serwer.
+</p>
+</div>
 
 <div class="section">
+<h2>Moje Projekty</h2>
 
-<!-- PLUGIN 1 -->
-<div class="plugin">
-<h2>🟢 ServerCore Framework</h2>
-<p>Zaawansowany prywatny system zarządzania serwerem Minecraft 1.21.</p>
+<div class="projects">
 
-<ul>
-<li>System rang</li>
-<li>Custom scoreboard</li>
-<li>System GUI</li>
-<li>Komendy administracyjne</li>
-<li>Teleport & cooldown system</li>
-<li>Modularna architektura</li>
-</ul>
-
-<p><b>Status:</b> Projekt prywatny</p>
-
-<iframe width="100%" height="400"
-src="https://www.youtube.com/embed/TUTAJ_FILM_1"
-frameborder="0" allowfullscreen></iframe>
+<!-- PROJEKT 1 -->
+<div class="card">
+<img src="https://picsum.photos/600/400?1">
+<div class="card-content">
+<h3>ServerCore Framework</h3>
+<p>Autorski prywatny system zarządzania serwerem zawierający rangi, GUI, cooldowny oraz modularną architekturę.</p>
+<div class="tags">
+<span class="tag">Java</span>
+<span class="tag">Paper 1.21</span>
+<span class="tag">Private</span>
+</div>
+<a href="#">Zobacz demo</a>
+</div>
 </div>
 
-<!-- PLUGIN 2 -->
-<div class="plugin">
-<h2>⚔ PvP Combat System</h2>
-<p>System walki zapobiegający logout podczas PvP oraz zarządzający cooldownami.</p>
-
-<ul>
-<li>Combat tag system</li>
-<li>Blokada komend podczas walki</li>
-<li>ActionBar informacje</li>
-<li>Konfigurowalne czasy</li>
-<li>Pełna obsługa eventów</li>
-</ul>
-
-<p><b>Status:</b> Projekt prywatny</p>
-
-<iframe width="100%" height="400"
-src="https://www.youtube.com/embed/TUTAJ_FILM_2"
-frameborder="0" allowfullscreen></iframe>
+<!-- PROJEKT 2 -->
+<div class="card">
+<img src="https://picsum.photos/600/400?2">
+<div class="card-content">
+<h3>PvP Combat System</h3>
+<p>System combat tag z blokadą logoutu, obsługą eventów oraz dynamicznymi cooldownami.</p>
+<div class="tags">
+<span class="tag">PvP</span>
+<span class="tag">Event API</span>
+<span class="tag">1.21</span>
+</div>
+<a href="#">Zobacz demo</a>
+</div>
 </div>
 
-<!-- PLUGIN 3 -->
-<div class="plugin">
-<h2>🎒 Advanced GUI System</h2>
-<p>Autorski system GUI oparty o inventory z modularną obsługą kliknięć.</p>
-
-<ul>
-<li>Dynamiczne GUI</li>
-<li>Obsługa listenerów</li>
-<li>System stron</li>
-<li>Oddzielna logika akcji</li>
-<li>Łatwa rozbudowa</li>
-</ul>
-
-<p><b>Status:</b> Projekt prywatny</p>
-
-<iframe width="100%" height="400"
-src="https://www.youtube.com/embed/TUTAJ_FILM_3"
-frameborder="0" allowfullscreen></iframe>
+<!-- PROJEKT 3 -->
+<div class="card">
+<img src="https://picsum.photos/600/400?3">
+<div class="card-content">
+<h3>Advanced GUI Engine</h3>
+<p>System dynamicznych GUI z modularnym zarządzaniem akcjami i pełną konfiguracją.</p>
+<div class="tags">
+<span class="tag">Inventory API</span>
+<span class="tag">Custom UI</span>
+<span class="tag">Modular</span>
+</div>
+<a href="#">Zobacz demo</a>
+</div>
 </div>
 
+</div>
 </div>
 
 <footer>
-<p>Discord: patrys123_. | 2026</p>
+© 2026 TwojNick – Minecraft Developer
 </footer>
 
 </body>
